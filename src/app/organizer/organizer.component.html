@@ -5,15 +5,21 @@
   </header>
 
   <main>
-    <ul>
-      <li class="task">
+    <ul *ngIf="tasks.length; else noTasks ">
+      <li class="task" *ngFor="let task of tasks; let i = index">
         <span>
-          <strong>1</strong>
-          asdjflka;sjdf;lkj
+          <strong>{{i + 1}}</strong>
+          {{task.title}}
         </span>
-        <button class="btn btn-primary">Remove</button>
+        <button
+          class="btn btn-primary"
+          (click)="remove(task)"
+        >Remove</button>
       </li>
     </ul>
+    <ng-template #noTasks>
+      <p class="text-center">Задачи отсутствуют</p>
+    </ng-template>
   </main>
 
   <footer>
